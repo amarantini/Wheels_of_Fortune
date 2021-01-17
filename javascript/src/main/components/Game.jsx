@@ -85,7 +85,7 @@ class Game extends React.Component {
     //else lose the turn to next player
     handleGuess(event) {
       let alphabet;
-      let award;
+      let award=this.state.award_1;
       const reward = this.spinTheWheel();
       if(this.state.currPlayerIndex === 1){
         this.setState({
@@ -129,9 +129,15 @@ class Game extends React.Component {
           guessedConsonants: newGuessedConsonants
         });
         let newAward = award + this.puzzleDict[alphabet] * reward;
-        this.setState({
-          [award]: newAward
-        });
+        if(this.state.currPlayerIndex === 1) {
+          this.setState({
+            award_1: newAward
+          });
+        } else {
+          this.setState({
+            award_2: newAward
+          });
+        }
       }
       event.preventDefault();
     }
