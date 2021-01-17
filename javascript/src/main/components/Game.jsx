@@ -38,8 +38,7 @@ class Game extends React.Component {
         currPlayerIndex: 1,
         guessedConsonants: [],
         guessedVowels: [],
-        puzzleSolved: false,
-        result: "spin it"
+        puzzleSolved: false
       };
       this.handleGuess = this.handleGuess.bind(this);
       this.handleBuyVowel = this.handleBuyVowel.bind(this);
@@ -226,7 +225,7 @@ class Game extends React.Component {
         result1 += this.state.result_1;
       } else {
         player2Turn = ": Your turn";
-        result2 += "Spin the Wheel: " + this.state.result_2;
+        result2 += this.state.result_2;
       }
       let status;
       let awardWinned;
