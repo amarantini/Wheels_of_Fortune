@@ -255,7 +255,10 @@ class Game extends React.Component {
       //squares.push(<Row>);
       for(var k=0; k<this.puzzle.length; k++){
         if(this.puzzle[k] === " "){
-          squares.push(<Square value={null}/>);
+          // squares.push(<Square value={null}/>);
+          squares.push(<br></br>)
+          squares.push(<br></br>)
+
         } else {
           squares.push(<Square value={this.state.suppRecord[k]}/>);
         }
