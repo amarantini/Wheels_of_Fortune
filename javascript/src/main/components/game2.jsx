@@ -1,9 +1,5 @@
-import {Row, Col} from "react-bootstrap";
-import Board from "main/components/Board";
-
 //Player: spin the wheel, guess, buy a vowel, awards, solve the puzzle
 //Game: initialize Board and two Player, declare winner
-
 
 class Game extends React.Component {
     constructor(props) {
@@ -209,131 +205,127 @@ class Game extends React.Component {
       }
       return (
         <div className="game">
-            <h1>Wheels of Fortune!</h1>
-            <div className="game-board">
-                <h2>Hint: {this.hint}</h2>
-                <Board />
+          <div className="game-board">
+            <h2>Hint: {this.hint}</h2>
+            <p>{this.state.guess_1}</p>
+            <p>{this.state.guess_2}</p>
+          </div>
+          <div className="game-player">
+            <div className="player1">
+              <h3>Player 1 {player1Turn}</h3>
+              <p>{result1}</p>
+              <form onSubmit={this.handleGuess}>
+                <label>
+                  Guess:
+                  <input
+                    name="guess1"
+                    type="text"
+                    onChange={this.handleChange}
+                  />
+                </label>
+                <input
+                  type="submit"
+                  name="guess_1"
+                  value="Guess"
+                  disabled={this.disabled1()}
+                />
+                <br />
+              </form>
+              <form onSubmit={this.handleBuyVowel}>
+                <label>
+                  Buy a vowel:
+                  <input
+                    name="buyVowel1"
+                    type="text"
+                    onChange={this.handleChange}
+                  />
+                </label>
+                <input type="submit" name="buyVowel_1" value="Buy" disabled={this.disabled1()}/>
+                <br />
+              </form>
+              <form onSubmit={this.handleSolveThePuzzle}>
+                <label>
+                  Solve the puzzle:
+                  <input name="solvePuzzle1"
+                    type="text"
+                    onChange={this.handleChange}
+                  />
+                </label>
+                <input
+                  type="submit"
+                  name="solvePuzzle_1"
+                  value="Submit"
+                  disabled={this.disabled1()}
+                />
+              </form>
+              <p>Current award: {this.state.award_1}</p>
             </div>
-            <div className="game-player">
-            <Row>
-                <Col>
-                <div className="player1">
-                    <h3>Player 1 {player1Turn}</h3>
-                    <p>{result1}</p>
-                    <form onSubmit={this.handleGuess}>
-                        <label>Guess:
-                        <input
-                            name="guess1"
-                            type="text"
-                            onChange={this.handleChange}
-                        />
-                        </label>
-                        <input
-                            type="submit"
-                            name="guess_1"
-                            value="Guess"
-                            disabled={this.disabled1()}
-                        />
-                        <br />
-                    </form>
-                    <form onSubmit={this.handleBuyVowel}>
-                        <label>
-                        Buy a vowel:
-                        <input
-                            name="buyVowel1"
-                            type="text"
-                            onChange={this.handleChange}
-                        />
-                        </label>
-                        <input type="submit" name="buyVowel_1" value="Buy" disabled={this.disabled1()}/>
-                        <br />
-                    </form>
-                    <form onSubmit={this.handleSolveThePuzzle}>
-                        <label>
-                        Solve the puzzle:
-                        <input name="solvePuzzle1"
-                            type="text"
-                            onChange={this.handleChange}
-                        />
-                        </label>
-                        <input
-                        type="submit"
-                        name="solvePuzzle_1"
-                        value="Submit"
-                        disabled={this.disabled1()}
-                        />
-                    </form>
-                    <p>Current award: {this.state.award_1}</p>
-                </div>
-                </Col>
-                <Col>
-                <div className="player2">>
-                    <h3>Player 2 {player2Turn}</h3>
-                    <p>{result2}</p>
-                    <form onSubmit={this.handleGuess}>
-                        <label>
-                        Guess:
-                        <input
-                            name="guess2"
-                            type="text"
-                            onChange={this.handleChange}
-                        />
-                        </label>
-                        <input
-                        type="submit"
-                        name="guess_2"
-                        value="Guess"
-                        disabled={this.disabled2()}
-                        />
-                        <br />
-                    </form>
-                    <form onSubmit={this.handleBuyVowel}>
-                        <label>
-                        Buy a vowel:
-                        <input
-                            name="buyVowel2"
-                            type="text"
-                            onChange={this.handleChange}
-                        />
-                        </label>
-                        <input
-                        type="submit"
-                        name="buyVowel_2"
-                        value="Buy"
-                        disabled={this.disabled2()}
-                        />
-                        <br />
-                    </form>
-                    <form onSubmit={this.handleSolveThePuzzle}>
-                        <label>
-                        Solve the puzzle:
-                        <input
-                            name="solvePuzzle2"
-                            type="text"
-                            onChange={this.handleChange}
-                        />
-                        </label>
-                        <input
-                        type="submit"
-                        name="solvePuzzle_2"
-                        value="Submit"
-                        disabled={this.disabled2()}
-                        />
-                    </form>
-                    <p>Current award: {this.state.award_2}</p>
-                </div>
-                </Col>
-            </Row>
+  
+            <div>
+              <h3>Player 2 {player2Turn}</h3>
+              <p>{result2}</p>
+              <form onSubmit={this.handleGuess}>
+                <label>
+                  Guess:
+                  <input
+                    name="guess2"
+                    type="text"
+                    onChange={this.handleChange}
+                  />
+                </label>
+                <input
+                  type="submit"
+                  name="guess_2"
+                  value="Guess"
+                  disabled={this.disabled2()}
+                />
+                <br />
+             </form>
+             <form onSubmit={this.handleBuyVowel}>
+                <label>
+                  Buy a vowel:
+                  <input
+                    name="buyVowel2"
+                    type="text"
+                    onChange={this.handleChange}
+                  />
+                </label>
+                <input
+                  type="submit"
+                  name="buyVowel_2"
+                  value="Buy"
+                  disabled={this.disabled2()}
+                />
+                <br />
+            </form>
+            <form onSubmit={this.handleSolveThePuzzle}>
+                <label>
+                  Solve the puzzle:
+                  <input
+                    name="solvePuzzle2"
+                    type="text"
+                    onChange={this.handleChange}
+                  />
+                </label>
+                <input
+                  type="submit"
+                  name="solvePuzzle_2"
+                  value="Submit"
+                  disabled={this.disabled2()}
+                />
+              </form>
+              <p>Current award: {this.state.award_2}</p>
             </div>
-          
-            <div classname="game-result">
-                <p>{status}</p>
-            </div>
+          </div>
+          <div classname="game-result">
+            <p>{status}</p>
+          </div>
         </div>
       );
     }
   }
-
-
-
-export default Game
+  
+  // ========================================
+  
+  ReactDOM.render(<Game />, document.getElementById("root"));
+  

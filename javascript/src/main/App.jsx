@@ -1,13 +1,9 @@
 import React from "react";
 import "main/App.css";
-import Add from "main/pages/Add";
-import Subtract from "main/pages/Subtract";
-import Multiply from "main/pages/Multiply";
-import Divide from "main/pages/Divide";
 import { Container } from "react-bootstrap";
-import { Route, Switch, Redirect } from "react-router-dom";
-import AppNavbar from "main/components/AppNavbar";
-import AppFooter from "main/components/AppFooter";
+import { Route, Switch} from "react-router-dom";
+import Game from "main/components/game";
+
 
 function App() {
   return (
@@ -15,11 +11,7 @@ function App() {
       <AppNavbar />
       <Container className="flex-grow-1 mt-5">
         <Switch>
-          <Route exact path="/" component={Add} />
-          <Route exact path="/add" component={Add} />
-          <Route exact path="/divide" component={Divide} />
-          <Route exact path="/subtract" component={Subtract} />
-          <Route exact path="/multiply" component={Multiply} />
+          <Route exact path="/" component={Game} />
         </Switch>
       </Container>
       <AppFooter />
