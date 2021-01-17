@@ -1,6 +1,7 @@
 import React from "react";
 import {Row, Col} from "react-bootstrap";
-import Data from './phrases.json'
+import Data from "main/components//Data/"
+//import * as Data from './phrases.json'
 
 //import Board from "main/components/Board";
 
@@ -11,14 +12,12 @@ import Data from './phrases.json'
 class Game extends React.Component {
     constructor(props) {
       super(props);
-      const data = {
-        "ice cream": "Food",
-        hello: "Greeting"
-      };//require('/javacript/src/main/resource/puzzles.json');
-      const keys = Object.keys(data);
-      const dataSize = keys.length;
-      this.puzzle = keys[Math.floor(Math.random() * dataSize)];
-      this.hint = data[this.puzzle];
+      
+      var keys = Object.keys(Data);
+      var dataSize = keys.length;
+      var index = Math.floor(Math.random() * dataSize);
+      this.puzzle = keys[index];
+      this.hint = Data[this.puzzle];
       this.puzzleDict = {};
       for (let i = 0; i < this.puzzle.length; i++) {
         if (this.puzzle[i] !== " ") {
