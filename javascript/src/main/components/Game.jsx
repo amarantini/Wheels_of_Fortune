@@ -247,9 +247,9 @@ class Game extends React.Component {
       }
       return (
         <div className="game">
-            <h1>Wheels of Fortune!</h1>
-            <div className="game-board">
-                <h2>Hint: {this.hint}</h2>
+            <h1 style={{textAlign: 'center'}}>Wheels of Fortune!</h1>
+            <div className="game-board" >
+                <h2 style={{textAlign: 'center'}}>Hint: {this.hint}</h2>
                 
             </div>
             <div className="game-player">
@@ -259,7 +259,7 @@ class Game extends React.Component {
                     <h3>Player 1 {player1Turn}</h3>
                     <p>{result1}</p>
                     <form onSubmit={this.handleGuess}>
-                        <label>Guess:
+                        <label>Guess: 
                         <input
                             name="guess1"
                             type="text"
@@ -365,7 +365,7 @@ class Game extends React.Component {
             </div>
           
             <div classname="game-result">
-                <p>{status}</p>
+                <h3>{status}</h3>
             </div>
         </div>
       );

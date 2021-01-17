@@ -1,3 +1,34 @@
+.game {
+
+}
+
+.game-board {
+
+}
+
+.game-player{
+  
+}
+
+.player1 {
+  border: 1px solid black;
+  outline-style: solid;
+  outline-color: blue;
+  outline-width: thin;
+}
+
+.player2 {
+  border: 1px solid black;
+  outline-style: solid;
+  outline-color: blue;
+  outline-width: thin;
+}
+
+.game-result {
+
+}
+
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
