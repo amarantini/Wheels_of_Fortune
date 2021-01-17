@@ -2,6 +2,7 @@ import React from "react";
 import {Row, Col} from "react-bootstrap";
 import Data from "main/components//Data/"
 
+
 function Square(props) {
   return (
     <button className="square">
@@ -23,8 +24,6 @@ class Game extends React.Component {
       this.puzzle = keys[index];
       this.hint = Data[this.puzzle];
       this.puzzleDict = {};
-      
-
       for (let i = 0; i < this.puzzle.length; i++) {
         if (this.puzzle[i] !== " ") {
           if (!(this.puzzle[i] in this.puzzleDict)) {
@@ -33,6 +32,11 @@ class Game extends React.Component {
             this.puzzleDict[this.puzzle[i]] += 1;
           }
         }
+      }
+      var words = this.puzzle.split(" ");
+      var arr = [];
+      for(const [index,value] of words.entries()){
+        arr[index] = Array(value.length);
       }
       this.state = {
         award_1: 0,
@@ -45,7 +49,7 @@ class Game extends React.Component {
         guessedConsonants: [],
         guessedVowels: [],
         puzzleSolved: false,
-        suppRecord : Array(this.puzzle.length).fill(null)
+        suppRecord : arr//Array(this.puzzle.length).fill(null)
       };
       this.handleGuess = this.handleGuess.bind(this);
       this.handleBuyVowel = this.handleBuyVowel.bind(this);
@@ -255,11 +259,20 @@ class Game extends React.Component {
       //squares.push(<Row>);
       for(var k=0; k<this.puzzle.length; k++){
         if(this.puzzle[k] === " "){
-          squares.push(<Square value={null}/>);
+          squares.push(<div style={{padding:15}}><br /></div>);
         } else {
           squares.push(<Square value={this.state.suppRecord[k]}/>);
         }
       }
+      /*for(const [index,value] of this.state.suppRecord.entries()){
+        var word = [];
+        var space = 0;
+        for( value.entries()) {
+          word.push(<Square value={this.state.suppRecord[ind+space]}/>);
+        }
+        space += 1;
+        squares.push(word);
+      }*/
       //squares.push(</Row>);
 
       //render Game
@@ -295,7 +308,7 @@ class Game extends React.Component {
             <h1 style={{textAlign: 'center',color:'aquamarine',textDecoration:'underline aquamarine', fontStyle:'italic', fontVariant:'small-caps'}}>Wheels of Fortune!</h1>
             <div className="game-board" style={{padding: 12}}>
                 <h2 style={{textAlign: 'center', color:'blue'}}>Hint: {this.hint}</h2>
-                <p>{this.puzzle}</p>
+                <p></p>
                 <div classname="board" style={{padding: 12}}>
                   {squares}
                   <br />
