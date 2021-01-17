@@ -34,6 +34,8 @@ class Game extends React.Component {
         guess_1: "",
         award_2: 0,
         guess_2: "",
+        result_1: "spin it",
+        result_2: "spin it",
         currPlayerIndex: 1,
         guessedConsonants: [],
         guessedVowels: [],
@@ -82,13 +84,22 @@ class Game extends React.Component {
     //if alphabet in phrase, add num of alphabet*reward to award and spinTheWhellagain,
     //else lose the turn to next player
     handleGuess(event) {
-      const alphabet =
-        (this.state.currPlayerIndex === 1) ? this.state.guess_1 : this.state.guess_2;
-      let award = (this.state.currPlayerIndex === 1) ? "award_1" : "award_2";
+      let alphabet;
+      let award;
       const reward = this.spinTheWheel();
-      this.setState({
-        result:reward
-      });
+      if(this.state.currPlayerIndex === 1){
+        this.setState({
+          result_1:reward
+        });
+        alphabet = this.state.guess_1;
+        award = this.state.award_1;
+      } else {
+        this.setState({
+          result_2:reward
+        });
+        alphabet = this.state.guess_2;
+        award = this.state.award_2;
+      }
       if (reward === "Bankrupt") {
         let newPlayerIndex = (this.state.currPlayerIndex === 1) ? 2 : 1;
         if(this.state.currPlayerIndex === 1) {
@@ -201,16 +212,16 @@ class Game extends React.Component {
   
   
     render() {
-      let result1;
-      let result2;
+      let result1="Spin the Wheel: ";
+      let result2="Spin the Wheel: ";
       let player1Turn="\n";
       let player2Turn="\n";
       if (this.state.currPlayerIndex === 1) {
         player1Turn = ": Your turn";
-        result1 = "Spin the Wheel: " + this.state.result;
+        result1 += this.state.result_1;
       } else {
         player2Turn = ": Your turn";
-        result2 = "Spin the Wheel: " + this.state.result;
+        result2 += "Spin the Wheel: " + this.state.result_2;
       }
       let status;
       let awardWinned;
