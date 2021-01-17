@@ -246,19 +246,19 @@ class Game extends React.Component {
       }
       return (
         <div className="game">
-            <h1 style={{textAlign: 'center'}}>Wheels of Fortune!</h1>
+            <h1 style={{textAlign: 'center',color:'aquamarine',textDecoration:'underline aquamarine', fontStyle:'italic', fontVariant:'small-caps'}}>Wheels of Fortune!</h1>
             <div className="game-board" >
-                <h2 style={{textAlign: 'center'}}>Hint: {this.hint}</h2>
+                <h2 style={{textAlign: 'center', color:'blue'}}>Hint: {this.hint}</h2>
                 
             </div>
             <div className="game-player">
             <Row>
                 <Col>
                 <div className="player1">
-                    <h3>Player 1 {player1Turn}</h3>
-                    <p>{result1}</p>
+                    <h3 style={{color:'lightcoral',padding: 15}}>Player 1 {player1Turn}</h3>
+                    <p style={{padding: 12}}>{result1}</p>
                     <form onSubmit={this.handleGuess}>
-                        <label>Guess: 
+                        <label style={{padding: 12}}>Guess: 
                         <input
                             name="guess1"
                             type="text"
@@ -274,7 +274,7 @@ class Game extends React.Component {
                         <br />
                     </form>
                     <form onSubmit={this.handleBuyVowel}>
-                        <label>
+                        <label style={{padding: 12}}>
                         Buy a vowel:
                         <input
                             name="buyVowel1"
@@ -286,7 +286,7 @@ class Game extends React.Component {
                         <br />
                     </form>
                     <form onSubmit={this.handleSolveThePuzzle}>
-                        <label>
+                        <label style = {{padding: 12}}>
                         Solve the puzzle:
                         <input name="solvePuzzle1"
                             type="text"
@@ -300,15 +300,15 @@ class Game extends React.Component {
                         disabled={this.disabled1()}
                         />
                     </form>
-                    <p>Current award: {this.state.award_1}</p>
+                    <p style = {{padding: 12}}>Current award: {this.state.award_1}</p>
                 </div>
                 </Col>
                 <Col>
                 <div className="player2">
-                    <h3>Player 2 {player2Turn}</h3>
-                    <p>{result2}</p>
+                    <h3 style={{color:'lightcoral', padding: 12}}>Player 2 {player2Turn}</h3>
+                    <p style = {{padding: 12}}>{result2}</p>
                     <form onSubmit={this.handleGuess}>
-                        <label>
+                        <label style = {{padding: 12}}>
                         Guess:
                         <input
                             name="guess2"
@@ -325,7 +325,7 @@ class Game extends React.Component {
                         <br />
                     </form>
                     <form onSubmit={this.handleBuyVowel}>
-                        <label>
+                        <label style = {{padding: 12}}>
                         Buy a vowel:
                         <input
                             name="buyVowel2"
@@ -342,7 +342,7 @@ class Game extends React.Component {
                         <br />
                     </form>
                     <form onSubmit={this.handleSolveThePuzzle}>
-                        <label>
+                        <label style = {{padding: 12}}>
                         Solve the puzzle:
                         <input
                             name="solvePuzzle2"
@@ -357,7 +357,7 @@ class Game extends React.Component {
                         disabled={this.disabled2()}
                         />
                     </form>
-                    <p>Current award: {this.state.award_2}</p>
+                    <p style = {{padding: 12}}>Current award: {this.state.award_2}</p>
                 </div>
                 </Col>
             </Row>

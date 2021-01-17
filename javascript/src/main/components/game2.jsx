@@ -6,8 +6,10 @@ class Game extends React.Component {
       super(props);
       const data = {
         "ice cream": "Food",
-        hello: "Greeting"
+        "hello": "Greeting",
       }; //require('../../../resource/puzzles.json');
+      let data = require('~/resource/puzzles.json');
+      console.log(data[Math.random()]);
       const keys = Object.keys(data);
       const dataSize = keys.length;
       this.puzzle = keys[Math.floor(Math.random() * dataSize)];
