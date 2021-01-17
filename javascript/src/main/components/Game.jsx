@@ -1,13 +1,17 @@
 import React from "react";
 import {Row, Col} from "react-bootstrap";
 import Data from "main/components//Data/"
-//import * as Data from './phrases.json'
 
-//import Board from "main/components/Board";
+function Square(props) {
+  return (
+    <button className="square">
+      {props.value}
+    </button>
+  );
+}
 
 //Player: spin the wheel, guess, buy a vowel, awards, solve the puzzle
 //Game: initialize Board and two Player, declare winner
-
 
 class Game extends React.Component {
     constructor(props) {
@@ -19,6 +23,8 @@ class Game extends React.Component {
       this.puzzle = keys[index];
       this.hint = Data[this.puzzle];
       this.puzzleDict = {};
+      
+
       for (let i = 0; i < this.puzzle.length; i++) {
         if (this.puzzle[i] !== " ") {
           if (!(this.puzzle[i] in this.puzzleDict)) {
@@ -38,15 +44,22 @@ class Game extends React.Component {
         currPlayerIndex: 1,
         guessedConsonants: [],
         guessedVowels: [],
-        puzzleSolved: false
+        puzzleSolved: false,
+        suppRecord : Array(this.puzzle.length).fill(null)
       };
       this.handleGuess = this.handleGuess.bind(this);
       this.handleBuyVowel = this.handleBuyVowel.bind(this);
       this.handleSolveThePuzzle = this.handleSolveThePuzzle.bind(this);
       this.handleChange = this.handleChange.bind(this);
     }
+
+    renderSquare(i) {
+      return (
+          <Square value={this.state.suppRecord[i]}/>
+      );
+    }
   
-    //TODO: The wheel has 24 spaces ($500*4,$600*4,$700*4,$800*4,$900*4, $2500*1, Bankrupt*2, LoseATurn*1)
+    //The wheel has 24 spaces ($500*4,$600*4,$700*4,$800*4,$900*4, $2500*1, Bankrupt*2, LoseATurn*1)
     spinTheWheel() {
       const rewards = [
         500,
@@ -77,7 +90,7 @@ class Game extends React.Component {
       return rewards[Math.floor(Math.random() * 24)];
     }
   
-    //TODO: spinTheWhell
+    //spinTheWhell
     //if bankrupt, set award to 0, else if lose a turn, next player's turn;
     //if alphabet in phrase, add num of alphabet*reward to award and spinTheWhellagain,
     //else lose the turn to next player
@@ -123,8 +136,15 @@ class Game extends React.Component {
       } else if (alphabet in this.puzzleDict) {
         var newGuessedConsonants = this.state.guessedConsonants;
         newGuessedConsonants.push(alphabet);
+        var newSuppRecord = this.state.suppRecord;
+        for(var j=0; j<this.puzzle.length; j++){
+          if(this.puzzle[j]===alphabet) {
+            newSuppRecord[j]=alphabet;
+          }
+        }
         this.setState({
-          guessedConsonants: newGuessedConsonants
+          guessedConsonants: newGuessedConsonants,
+          suppRecord:newSuppRecord
         });
         let newAward = award + this.puzzleDict[alphabet] * reward;
         if(this.state.currPlayerIndex === 1) {
@@ -140,7 +160,7 @@ class Game extends React.Component {
       event.preventDefault();
     }
   
-    //TODO: each vowel cost $250
+    //each vowel cost $250
     //Contestants may continue to buy vowels so long as they have enough money to keep doing so,
     //until all of the vowels in the puzzle have been revealed
     handleBuyVowel(event) {
@@ -171,8 +191,15 @@ class Game extends React.Component {
         } else if (vowel in this.puzzleDict) {
           var newGuessedVowels = this.state.guessedVowels;
           newGuessedVowels.push(vowel);
+          var newSuppRecord = this.state.suppRecord;
+          for(var j=0; j<this.puzzle.length; j++){
+            if(this.puzzle[j]===vowel) {
+              newSuppRecord[j]=vowel;
+            }
+          }
           this.setState({
-            guessedVowels: newGuessedVowels
+            guessedVowels: newGuessedVowels,
+            suppRecord:newSuppRecord
           });
           //board show vowel
         }
@@ -181,7 +208,7 @@ class Game extends React.Component {
       event.preventDefault();
     }
   
-    //TODO: if true, declare winner
+    //if true, declare winner
     //else lose a turn
     handleSolveThePuzzle(event) {
       const guess =
@@ -199,12 +226,19 @@ class Game extends React.Component {
       }
       event.preventDefault();
     }
-  
+    
+    //store guessed value
     handleChange = (event) => {
-      const guess = (this.state.currPlayerIndex === 1)?'guess_1':'guess_2'
-      this.setState({
-        [guess]: event.target.value
-      });
+      var str = event.target.value.toUpperCase();
+      if(this.state.currPlayerIndex === 1){
+        this.setState({
+          guess_1: str
+        });
+      } else {
+        this.setState({
+          guess_2: str
+        });
+      }
     };
     
     disabled1(){
@@ -216,6 +250,19 @@ class Game extends React.Component {
   
   
     render() {
+      //render Board
+      var squares = [];
+      //squares.push(<Row>);
+      for(var k=0; k<this.puzzle.length; k++){
+        if(this.puzzle[k] === " "){
+          squares.push(<Square value={null}/>);
+        } else {
+          squares.push(<Square value={this.state.suppRecord[k]}/>);
+        }
+      }
+      //squares.push(</Row>);
+
+      //render Game
       let result1="Spin the Wheel: ";
       let result2="Spin the Wheel: ";
       let player1Turn="\n";
@@ -246,9 +293,13 @@ class Game extends React.Component {
       return (
         <div className="game">
             <h1 style={{textAlign: 'center',color:'aquamarine',textDecoration:'underline aquamarine', fontStyle:'italic', fontVariant:'small-caps'}}>Wheels of Fortune!</h1>
-            <div className="game-board" >
+            <div className="game-board" style={{padding: 12}}>
                 <h2 style={{textAlign: 'center', color:'blue'}}>Hint: {this.hint}</h2>
-                
+                <p>{this.puzzle}</p>
+                <div classname="board" style={{padding: 12}}>
+                  {squares}
+                  <br />
+                </div>
             </div>
             <div className="game-player">
             <Row>
