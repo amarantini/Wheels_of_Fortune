@@ -38,6 +38,7 @@
 }
 
 .player1 {
+  margin: 10px 0px 0px 0px;
   border: 1px solid black;
   outline-style: solid;
   outline-color: blue;
@@ -45,6 +46,7 @@
 }
 
 .player2 {
+  margin: 10px 0px 10px 10px;
   border: 1px solid black;
   outline-style: solid;
   outline-color: blue;

@@ -259,21 +259,15 @@ class Game extends React.Component {
       //squares.push(<Row>);
       for(var k=0; k<this.puzzle.length; k++){
         if(this.puzzle[k] === " "){
-          squares.push(<div style={{padding:15}}><br /></div>);
+          
+          squares.push(<br></br>)
+          squares.push(<br></br>)
+
         } else {
           squares.push(<Square value={this.state.suppRecord[k]}/>);
         }
       }
-      /*for(const [index,value] of this.state.suppRecord.entries()){
-        var word = [];
-        var space = 0;
-        for( value.entries()) {
-          word.push(<Square value={this.state.suppRecord[ind+space]}/>);
-        }
-        space += 1;
-        squares.push(word);
-      }*/
-      //squares.push(</Row>);
+      
 
       //render Game
       let result1="Spin the Wheel: ";
